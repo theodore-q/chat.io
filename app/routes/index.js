@@ -67,14 +67,6 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook', {
 		failureFlash: true
 }));
 
-// 2. Login via Twitter
-router.get('/auth/twitter', passport.authenticate('twitter'));
-router.get('/auth/twitter/callback', passport.authenticate('twitter', {
-		successRedirect: '/rooms',
-		failureRedirect: '/',
-		failureFlash: true
-}));
-
 // Rooms
 router.get('/rooms', [User.isAuthenticated, function(req, res, next) {
 	Room.find(function(err, rooms){
@@ -93,7 +85,18 @@ router.get('/chat/:id', [User.isAuthenticated, function(req, res, next) {
 		}
 		res.render('chatroom', { user: req.user, room: room });
 	});
-	
+}]);
+
+// Admin
+router.get('/admin/:id', [User.isAuthenticated, function(req, res, next) {
+	var roomId = req.params.id;
+	Room.findById(roomId, function(err, room){
+		if(err) throw err;
+		if(!room){
+			return next(); 
+		}
+		res.render('admin', { user: req.user, room: room });
+	});
 }]);
 
 // Logout

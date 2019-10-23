@@ -35,6 +35,7 @@ var app = {
   },
 
   chat: function(roomId, username){
+
     
     var socket = io('/chatroom', { transports: ['websocket'] });
 

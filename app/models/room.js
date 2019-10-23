@@ -74,6 +74,7 @@ var getUsers = function(room, socket, callback){
 
 			// fire callback when all users are loaded (async) from database 
 			if(++loadedUsers === users.length){
+				
 				return callback(null, users, cunt);
 			}
 		});

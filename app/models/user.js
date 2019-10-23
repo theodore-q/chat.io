@@ -15,6 +15,10 @@ var findById = function (id, callback){
 	userModel.findById(id, callback);
 }
 
+var update = function (user,callback){
+	userModel.updateOne({_id:user._id}, user, callback);
+}
+
 
 /**
  * Find a user, and create one if doesn't exist already.
@@ -64,5 +68,6 @@ module.exports = {
 	findOne, 
 	findById, 
 	findOrCreate, 
-	isAuthenticated 
+	isAuthenticated,
+	update 
 };

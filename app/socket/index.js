@@ -5,6 +5,7 @@ var redis 	= require('redis').createClient;
 var adapter = require('socket.io-redis');
 
 var Room = require('../models/room');
+var User = require('../models/user');
 
 /**
  * Encapsulates all code for emitting and listening to socket events
@@ -97,14 +98,66 @@ var ioEvents = function(io) {
 			});
 		});
 
+		const blockedUsers = []
+
 		// When a new message arrives
 		socket.on('newMessage', function(roomId, message) {
+			User.findOne({'username': message.username},((err,user)=>{
+				console.log(user)
+				if(user.mute){ // Check to see if user has been muted.
+					return
+				}
+				// No need to emit 'addMessage' to the current socket
+				// As the new message will be added manually in 'main.js' file
+				// socket.emit('addMessage', message);
 
-			// No need to emit 'addMessage' to the current socket
-			// As the new message will be added manually in 'main.js' file
-			// socket.emit('addMessage', message);
+				return socket.broadcast.to(roomId).emit('addMessage', message);
+			}));
+
+
+		});
+
+				// When a block request comes
+		socket.on('toggleBlockUser', function(roomId, username) {
+			User.findOne({'username': username},((err,user)=>{
+
+				user.mute = user.mute ? false : true;
+
+				User.update(user,((err,user)=>{
+
+					Room.findById(roomId, function(err, room){
+
+						Room.getUsers(room, socket, function(err, users, cuntUserInRoom){
+							if(err) throw err;
+							console.log(users)
+							
+							// Return list of all user connected to the room to the current user
+							socket.emit('updateUsersList', users, true);
+
+							// Return the current user to other connecting sockets in the room 
+							// ONLY if the user wasn't connected already to the current room
+							if(cuntUserInRoom === 1){
+								socket.broadcast.to(newRoom.id).emit('updateUsersList', users[users.length - 1]);
+							}
+						});
+
+					})
+
+				}))
+			}));
 			
-			socket.broadcast.to(roomId).emit('addMessage', message);
+
+			// console.log('user',userName)
+
+			// unBlockedUsers = blockedUsers.filter((val)=>{
+			// 	return val === userName
+			// })
+
+			// if(unBlockedUsers.length() == 0){
+			// 	blockedUsers.push(userName)
+			// }
+			
+			//socket.broadcast.to(roomId).emit('addMessage', message);
 		});
 
 	});

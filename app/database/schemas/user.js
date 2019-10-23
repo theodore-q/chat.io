@@ -19,7 +19,8 @@ var UserSchema = new Mongoose.Schema({
     username: { type: String, required: true},
     password: { type: String, default: null },
     socialId: { type: String, default: null },
-    picture:  { type: String, default:  DEFAULT_USER_PICTURE}
+    picture:  { type: String, default:  DEFAULT_USER_PICTURE},
+    mute:     { type: Boolean, default: false }
 });
 
 /**

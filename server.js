@@ -1,5 +1,8 @@
 'use strict';
 
+//config
+require('dotenv').config()
+
 // Chat application dependencies
 var express 	= require('express');
 var app  		= express();

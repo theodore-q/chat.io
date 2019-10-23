@@ -20,12 +20,6 @@ var init = function () {
 				callbackURL: "/auth/facebook/callback",
 				profileFields: ['id', 'displayName', 'photos']
 			},
-			twitter:{
-				consumerKey: process.env.twitterConsumerKey,
-				consumerSecret: process.env.twitterConsumerSecret,
-				callbackURL: "/auth/twitter/callback",
-				profileFields: ['id', 'displayName', 'photos']
-			},
 			redis: {
 				host: redisURI.hostname,
 				port: redisURI.port,
@@ -34,7 +28,7 @@ var init = function () {
 		}
 	}
 	else {
-		return require('./config.json');
+		return require('./config.js');
 	}
 }
 
