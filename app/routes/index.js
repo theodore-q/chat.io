@@ -76,7 +76,7 @@ router.get('/authX/Xfacebook',
 // router.get('', passport.authenticate('facebook', 
 // { successRedirect: '/rooms', failureRedirect: '/login' }));
 
-app.get('/authX/Xfacebook/Xcallback',
+router.get('/authX/Xfacebook/Xcallback',
   passport.authenticate('facebook', { successRedirect: '/rooms',
                                       failureRedirect: '/login' }));
 
