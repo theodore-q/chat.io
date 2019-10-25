@@ -77,7 +77,7 @@ router.get('/authX/Xfacebook',
 // { successRedirect: '/rooms', failureRedirect: '/login' }));
 
 app.get('/authX/Xfacebook/Xcallback',
-  passport.authenticate('facebook', { successRedirect: '/',
+  passport.authenticate('facebook', { successRedirect: '/rooms',
                                       failureRedirect: '/login' }));
 
 // router.get('/authX/Xfacebook/Xcallback',
@@ -107,11 +107,8 @@ router.get('/auth/facebook',
   passport.authenticate('facebook'));
 
 router.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/rooms');
-  });
+	passport.authenticate('facebook', { successRedirect: '/rooms',
+	failureRedirect: '/login' }));
 
 // Rooms
 router.get('/rooms', [User.isAuthenticated, function(req, res, next) {

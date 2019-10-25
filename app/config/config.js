@@ -15,7 +15,7 @@ const config = {
 	"facebook": {
 		"clientID": process.env.FB_APP_ID || 'vfd',
 		"clientSecret": process.env.FB_APP_SECRET || 'fdf',
-		"callbackURL": "/authX/Xfacebook/Xcallback",
+		"callbackURL": "/auth/facebook/callback",
 		"profileFields": ["id", "displayName", "photos"]
 	},
 	"redis": {
