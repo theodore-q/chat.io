@@ -66,15 +66,19 @@ router.get('/authX/Xfacebook',
 	passport.authenticate('facebook'));
 
 
-router.get('/authX/Xfacebook/Xcallback',
-   function(req, res) {
-     // Successful authentication, redirect home.
-     res.redirect('/auth/facebook/callback');
-	 }
-);
+// router.get('/authX/Xfacebook/Xcallback',
+//    function(req, res) {
+//      // Successful authentication, redirect home.
+//      res.redirect('/auth/facebook/callback');
+// 	 }
+// );
 
-router.get('/auth/facebook/callback', passport.authenticate('facebook', 
-{ successRedirect: '/rooms', failureRedirect: '/login' }));
+// router.get('', passport.authenticate('facebook', 
+// { successRedirect: '/rooms', failureRedirect: '/login' }));
+
+app.get('/authX/Xfacebook/Xcallback',
+  passport.authenticate('facebook', { successRedirect: '/',
+                                      failureRedirect: '/login' }));
 
 // router.get('/authX/Xfacebook/Xcallback',
 // 	passport.authenticate('facebook', { failureRedirect: '/' }),
