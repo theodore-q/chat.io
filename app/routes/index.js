@@ -60,10 +60,10 @@ router.post('/register', function(req, res, next) {
 
 // Social Authentication routes
 // 1. Login via Facebook
-app.get('/auth/facebook',
+router.get('/auth/facebook',
   passport.authenticate('facebook'));
 
-app.get('/auth/facebook/callback',
+router.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/' }),
   function(req, res) {
     // Successful authentication, redirect home.
