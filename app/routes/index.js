@@ -58,6 +58,22 @@ router.post('/register', function(req, res, next) {
 	}
 });
 
+
+
+// Social Authentication routes
+// 1. Login via Facebook
+router.get('/authX/Xfacebook',
+  passport.authenticate('facebook'));
+
+router.get('/authX/Xfacebook/Xcallback',
+  passport.authenticate('facebook', { failureRedirect: '/' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/rooms');
+  });
+
+
+
 // Social Authentication routes
 // 1. Login via Facebook
 router.get('/auth/facebook',

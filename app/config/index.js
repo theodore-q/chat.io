@@ -17,7 +17,7 @@ var init = function () {
 			facebook: {
 				clientID: process.env.facebookClientID,
 				clientSecret: process.env.facebookClientSecret,
-				callbackURL: "/auth/facebook/callback",
+				callbackURL: "/authX/Xfacebook/Xcallback",
 				profileFields: ['id', 'displayName', 'photos']
 			},
 			redis: {
