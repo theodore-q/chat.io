@@ -64,7 +64,14 @@ router.post('/register', function(req, res, next) {
 // 1. Login via Facebook
 router.get('/authX/Xfacebook',
 	passport.authenticate('facebook'));
-	
+
+
+router.get('/authX/Xfacebook/Xcallback',
+   function(req, res) {
+     // Successful authentication, redirect home.
+     res.redirect('/auth/facebook/callback');
+	 }
+);
 
 router.get('/auth/facebook/callback', passport.authenticate('facebook', 
 { successRedirect: '/rooms', failureRedirect: '/login' }));
