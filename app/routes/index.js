@@ -61,7 +61,11 @@ router.post('/register', function(req, res, next) {
 // Social Authentication routes
 // 1. Login via Facebook
 router.get('/auth/facebook', passport.authenticate('facebook'));
-router.get('/auth/facebook/callback', 
+router.get('/auth/facebook/callback', function (req, res, next) {
+	console.log('Request URL:', req.originalUrl)
+	req.originalUrl.split("?").shift()
+  next()
+},
 passport.authenticate('facebook', {
 	//	successRedirect: '/rooms',
 		failureRedirect: '/',
