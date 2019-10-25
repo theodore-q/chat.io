@@ -63,24 +63,28 @@ router.post('/register', function(req, res, next) {
 // Social Authentication routes
 // 1. Login via Facebook
 router.get('/authX/Xfacebook',
-  passport.authenticate('facebook'));
+	passport.authenticate('facebook'));
+	
 
-router.get('/authX/Xfacebook/Xcallback',
-	passport.authenticate('facebook', { failureRedirect: '/' }),
+router.get('/auth/facebook/callback', passport.authenticate('facebook', 
+{ successRedirect: '/rooms', failureRedirect: '/login' }));
 
-	// passport.authenticate('facebook', {
-	// 	successRedirect: '/rooms',
-	// 	 failureRedirect: '/',
-	//  //	failureFlash: true
- 	// })
+// router.get('/authX/Xfacebook/Xcallback',
+// 	passport.authenticate('facebook', { failureRedirect: '/' }),
+
+// 	// passport.authenticate('facebook', {
+// 	// 	successRedirect: '/rooms',
+// 	// 	 failureRedirect: '/',
+// 	//  //	failureFlash: true
+//  	// })
  
 	 
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/rooms');
-	}
+//   function(req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect('/rooms');
+// 	}
 	
-	);
+// 	);
 
 
 
