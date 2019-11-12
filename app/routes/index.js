@@ -3,6 +3,7 @@
 var express	 	= require('express');
 var router 		= express.Router();
 var passport 	= require('passport');
+var config 		= require('../config');
 
 var User = require('../models/user');
 var Room = require('../models/room');
@@ -107,8 +108,8 @@ router.get('/auth/facebook',
   passport.authenticate('facebook'));
 
 router.get('/auth/facebook/callback',
-	passport.authenticate('facebook', { successRedirect: '/rooms',
-	failureRedirect: '/login' }));
+	passport.authenticate('facebook', { successRedirect: config.urls.strykinFront,
+	failureRedirect: config.urls.strykinFront }));
 
 // Rooms
 router.get('/rooms', [User.isAuthenticated, function(req, res, next) {
