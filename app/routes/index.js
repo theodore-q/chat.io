@@ -58,14 +58,57 @@ router.post('/register', function(req, res, next) {
 	}
 });
 
+
+
 // Social Authentication routes
 // 1. Login via Facebook
-router.get('/auth/facebook', passport.authenticate('facebook'));
-router.get('/auth/facebook/callback', passport.authenticate('facebook', {
-		successRedirect: '/rooms',
-		failureRedirect: '/',
-		failureFlash: true
-}));
+router.get('/authX/Xfacebook',
+	passport.authenticate('facebook'));
+
+
+// router.get('/authX/Xfacebook/Xcallback',
+//    function(req, res) {
+//      // Successful authentication, redirect home.
+//      res.redirect('/auth/facebook/callback');
+// 	 }
+// );
+
+// router.get('', passport.authenticate('facebook', 
+// { successRedirect: '/rooms', failureRedirect: '/login' }));
+
+router.get('/authX/Xfacebook/Xcallback',
+  passport.authenticate('facebook', { successRedirect: '/rooms',
+                                      failureRedirect: '/login' }));
+
+// router.get('/authX/Xfacebook/Xcallback',
+// 	passport.authenticate('facebook', { failureRedirect: '/' }),
+
+// 	// passport.authenticate('facebook', {
+// 	// 	successRedirect: '/rooms',
+// 	// 	 failureRedirect: '/',
+// 	//  //	failureFlash: true
+//  	// })
+ 
+	 
+//   function(req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect('/rooms');
+// 	}
+	
+// 	);
+
+
+
+
+
+// Social Authentication routes
+// 1. Login via Facebook
+router.get('/auth/facebook',
+  passport.authenticate('facebook'));
+
+router.get('/auth/facebook/callback',
+	passport.authenticate('facebook', { successRedirect: '/rooms',
+	failureRedirect: '/login' }));
 
 // Rooms
 router.get('/rooms', [User.isAuthenticated, function(req, res, next) {
