@@ -38,9 +38,9 @@ app.use(flash());
 
 app.use('/', routes);
 
-room.create({
-  title:'strykin'
-})
+// room.create({
+//   title:'strykin'
+// })
 
 // Middleware to catch 404 errors
 app.use(function(req, res, next) {
