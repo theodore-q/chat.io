@@ -132,7 +132,7 @@ router.get('/chat/:id', [User.isAuthenticated, function(req, res, next) {
 }]);
 
 // Chat Room 
-router.get('api/chat/:title', function(req, res, next) {
+router.get('/api/chat/:title', function(req, res, next) {
 	console.log('DOESTHIS WERK')
 	var roomTitle = req.params.title;
 	Room.find({title:roomTitle}, function(err, room){
