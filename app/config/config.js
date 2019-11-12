@@ -24,9 +24,9 @@ const config = {
 		"password": ""
 	},
 	"urls":{
-		"strykinFront": process.env.strykinFront,
+		"strykinFront": process.env.strykinFront  || 'localhost:3000',
 		"strykinBack": process.env.strykinBack,
-		"currentDomain": process.env.currentDomain
+		"currentDomain": process.env.currentDomain ,
 	}
 }
 
