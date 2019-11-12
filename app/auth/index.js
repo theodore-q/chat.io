@@ -59,6 +59,7 @@ var init = function(){
 	};
 
 	// Plug-in Facebook & Twitter Strategies
+	console.log('FACEBOOK CONFIG', config.facebook)
 	passport.use(new FacebookStrategy(config.facebook, verifySocialAccount));
 
 	return passport;
