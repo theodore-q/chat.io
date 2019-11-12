@@ -24,6 +24,11 @@ var init = function () {
 				host: redisURI.hostname,
 				port: redisURI.port,
 				password: redisPassword
+			},
+			urls:{
+				strykinFront: process.env.strykinFront  || 'localhost:3000',
+				strykinBack: process.env.strykinBack,
+				currentDomain: process.env.currentDomain ,
 			}
 		}
 	}
