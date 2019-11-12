@@ -131,6 +131,18 @@ router.get('/chat/:id', [User.isAuthenticated, function(req, res, next) {
 	});
 }]);
 
+// Chat Room 
+router.get('api/chat/:title', function(req, res, next) {
+	var roomTitle = req.params.title;
+	Room.find({title:roomTitle}, function(err, room){
+		if(err) throw err;
+		if(!room){
+			return next(); 
+		}
+		res.json( room );
+	});
+});
+
 // Admin
 router.get('/admin/:id', [User.isAuthenticated, function(req, res, next) {
 	var roomId = req.params.id;

@@ -13,9 +13,11 @@ var flash 		= require('connect-flash');
 // Chat application components
 var routes 		= require('./app/routes');
 var session 	= require('./app/session');
-var passport    = require('./app/auth');
+var passport  = require('./app/auth');
 var ioServer 	= require('./app/socket')(app);
 var logger 		= require('./app/logger');
+
+var room = require('./app/models/room')
 
 // Set the port number
 var port = process.env.PORT || 3000;
@@ -35,6 +37,10 @@ app.use(passport.session());
 app.use(flash());
 
 app.use('/', routes);
+
+room.create({
+  title:'strykin'
+})
 
 // Middleware to catch 404 errors
 app.use(function(req, res, next) {
